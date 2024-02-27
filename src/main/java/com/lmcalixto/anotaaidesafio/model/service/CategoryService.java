@@ -8,6 +8,7 @@ import com.lmcalixto.anotaaidesafio.model.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -41,5 +42,9 @@ public class CategoryService {
     public void delete(String id) {
         Category existCategory = repository.findById(id).orElseThrow(() -> new CategoryNotExistException("Categoria inexistente!!!"));
         repository.delete(existCategory);
+    }
+
+    public Optional<Category> getCategory(String id) {
+        return repository.findById(id);
     }
 }
